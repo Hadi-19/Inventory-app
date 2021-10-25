@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory app</title>
+    <style>
+        label,#create-button{
+            display:block ;
+        }
+        span{
+            display: inline;
+            color:#e64646;
+            background:#e4beb9;
+            border-radius: 25px;
+            padding:5px;
+            margin-left: 15px;
+            opacity: 0;
+           /* animation-duration: 6s;*/
+           /* transition: opacity 5s ease-out;*/
+            
+            
+        }
+       /* @keyframes opacityChange {
+            from{opacity: 0;}
+            to{opacity: 1;}
+            
+        }*/
+        nav{
+            background-color: rgb(186, 187, 192);
+        }
+        nav ul{
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li{
+            display: inline-block;
+            width: 200px;
+            font-size: 2em;
+        } 
+        nav ul li a{
+            text-decoration: none;
+            color: rgb(3, 7, 29);
+        }
+        footer{
+            background-color: rgb(186, 187, 192);
+            color: rgb(3, 7, 29);
+            height: 30px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 1.25em;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/invoices">Invoices</a></li>
+        </ul>
+    </nav>
+
+    <h1>Inventory web app</h1>
+    <button id="get-button" onclick="onclicki()">Get products</button>
+    <form  id="create-form">
+        <label for="create-input">Product name:</label>
+        <input type="text" id="create-input" >
+        <span id="invalid-name"> invalid name</span>
+        <label for="qte">quantity:</label>
+        <input type="number" name="qte" id="qte" min="0">
+        <span id="invalid-qte">invalid quantity</span>
+        <label for="price">Unit price</label>
+        <input type="number" name="price" id="price" step="any">
+        <span id="invalid-price">invalid price</span>
+        <br/>
+        <button id="create-button">Create</button>
+    </form>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Qte</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <footer><center>app created by Mohammed El Hadi DIDI</center></footer>
+    <script src="./script.js"></script>
+
+</body>
+</html>

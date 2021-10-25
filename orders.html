@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders page</title>
+    <style>
+        label,#create-order-button{
+            display:block ;
+        }
+         span{
+            display: inline;
+            color:#e64646;
+            background:#e4beb9;
+            border-radius: 25px;
+            padding:5px;
+            margin-left: 15px;
+            opacity: 0;
+           
+            
+            
+        }
+        .third {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+.third td, .third th {
+    border: 1px solid black;
+}
+
+        nav{
+            background-color: rgb(186, 187, 192);
+        }
+        nav ul{
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li{
+            display: inline-block;
+            width: 200px;
+            font-size: 2em;
+        } 
+        nav ul li a{
+            text-decoration: none;
+            color: rgb(3, 7, 29);
+        }
+        footer{
+            background-color: rgb(186, 187, 192);
+            color: rgb(3, 7, 29);
+            height: 30px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 1.25em;
+        }
+    </style>
+    <link href="modal.css" rel="stylesheet">
+   
+</head>
+<body>
+ 
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/invoices">Invoices</a></li>
+        </ul>
+    </nav>
+<center>
+
+
+
+<button data-modal-target="#modal">Add order</button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title">Order form</div>
+      <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+            <h1>Orders</h1> 
+        
+            <form id="create-order-form"  ></form>
+            <form id="sub-form"  ></form>
+        
+            <div class="main-component">
+                
+                <label for="costumer-name" form="create-order-form">Costumer name:</label>
+                    <input type="text" name="costumer-name" id="costumer-name" form="create-order-form">
+                    <span id="invalid-costumer-name">invalid Costumer name</span>
+                
+                <div class="sub-component">
+                    <label for="create-order-input" form="sub-form">Product name:</label>
+                    <select name="create-order-input" id="create-order-input" onchange="selecteChange()" form="sub-form"></select>
+                    <span id="invalid-order-name"> invalid name</span>
+                    <label for="order-qte" form="sub-form">quantity:</label>
+                    <input name="order-qte" id="order-qte" type="number"value="1" min="1" form="sub-form" >
+                    <span id="invalid-order-qte">invalid quantity</span>
+            
+                    <input type="submit" name="sub-save" value="Add" form="sub-form" />
+                </div>
+                <table>
+                    <thead class="first" style="display: none;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Qte</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="first"></tbody>
+                </table>
+                <div id="total" style="display: none;font-size:15px ;font-weight: 600;"> total</div>
+                <input type="submit" name="main-save" value="Order" form="create-order-form" />
+            </div>
+            </div>
+  </div>
+  <div id="overlay"></div>
+
+
+
+
+<hr>
+<center><button onclick="getOrdersList()">Get Orders list</button></center>
+<table border="1" style="border-collapse: collapse;text-align: center;">
+    <caption><h3>Orders list</h3></caption>
+    <thead class="second">
+        <tr>
+            <th>ID</th>
+            <th>Costumer name</th>
+            <th>
+                <table style="text-align: center;" class="third" border="1">
+                    <thead>
+                    <tr><th colspan="3" style=" width: 300px;">Product</th></tr>
+                    <tr><th style="width: 100px;">name</th>
+                        <th style="width: 100px;">qte</th>
+                        <th style="width: 100px;">amount</th>
+                    </tr>
+                    </thead>
+                </table>
+            </th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+           
+        </tr>
+    </thead>
+    <tbody class="second">
+       <!-- <tr>
+        <td>1</td>
+        <td>hadi</td>
+        <td>   
+            <table class="third fourth" style="text-align: center; " border="1">
+               
+               
+                    <tr >
+                        <td style="width: 100px;">laptop</td>
+                        <td style="width: 100px;">1</td>
+                        <td style="width: 100px;">1000</td>
+                    </tr>
+                    <tr>
+                        <td>usb</td>
+                        <td>5</td>
+                        <td>500</td>
+                    </tr>
+                
+               
+            </table>
+
+
+
+        </td>
+        <td>1500 $</td>
+        <td><button>delete</button></td>
+        <td><span></span></td>
+        </tr>-->
+    </tbody>
+    </table>
+
+    <div id="order-info">
+        <!-- <div class="modal" id="modal1">
+            <div class="modal-header">
+              <div class="title">Example Modal</div>
+              <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div> -->
+    </div>
+
+</center>
+<footer><center>app created by Mohammed El Hadi DIDI</center></footer>
+</body>
+<script src="./orders.js"></script>
+
+<script defer src="./modal.js"></script>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices page</title>
+    <style>
+        label,#create-order-button{
+            display:block ;
+        }
+         span{
+            display: inline;
+            color:#e64646;
+            background:#e4beb9;
+            border-radius: 25px;
+            padding:5px;
+            margin-left: 15px;
+            opacity: 0;
+           
+            
+            
+        }
+        .third {
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+.third td, .third th {
+    border: 1px solid black;
+}
+
+        nav{
+            background-color: rgb(186, 187, 192);
+        }
+        nav ul{
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li{
+            display: inline-block;
+            width: 200px;
+            font-size: 2em;
+        } 
+        nav ul li a{
+            text-decoration: none;
+            color: rgb(3, 7, 29);
+        }
+        footer{
+            background-color: rgb(186, 187, 192);
+            color: rgb(3, 7, 29);
+            height: 30px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 1.25em;
+        }
+    </style>
+    <link href="modal.css" rel="stylesheet">
+    <script>
+
+const getInvoicesList=()=>{
+  fetch('/invoiceslist',{method:'GET',headers:{'Content-Type':'Application/json'}}).then(res=>res.json())
+  .then(res=>{
+      
+      const tbody2=document.querySelector('tbody.second');
+     
+      
+      tbody2.innerHTML="";
+      res.invoices.forEach((order,index) => {
+          
+          tbody2.innerHTML+=`\
+          <tr>\
+          <td>${order.id}</td>\
+          <td>${order.costumerName}</td>\
+          <td> \  
+              <table class="third fourth" style="text-align: center; " border="1">\                
+                     
+              </table>\
+          </td>\
+          <td>${order.totalPrice} DA</td>\      
+          </tr>`
+          const innerTable=document.querySelectorAll('table.fourth')[index]
+          order.products.forEach((product)=>{
+            innerTable.innerHTML+=` <tr >\
+            <td style="width: 100px;">${product.name}</td>\
+            <td style="width: 100px;">${product.qte}</td>\
+            <td style="width: 100px;">${product.price} DA</td>\
+        </tr>`
+          })
+
+      })
+    })
+
+
+  
+                
+}
+getInvoicesList();
+    </script>
+   
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/invoices">Invoices</a></li>
+        </ul>
+    </nav>
+
+<center><button onclick="getInvoicesList()">Refresh Invoices list</button>
+<hr>
+<table border="1" style="border-collapse: collapse;text-align: center;">
+    <caption><h3>Invoices list</h3></caption>
+    <thead class="second">
+        <tr>
+            <th>ID</th>
+            <th>Costumer name</th>
+            <th>
+                <table style="text-align: center;" class="third" border="1">
+                    <thead>
+                    <tr><th colspan="3" style=" width: 300px;">Product</th></tr>
+                    <tr><th style="width: 100px;">name</th>
+                        <th style="width: 100px;">qte</th>
+                        <th style="width: 100px;">amount</th>
+                    </tr>
+                    </thead>
+                </table>
+            </th>
+            <th>Total Amount</th>
+            
+           
+        </tr>
+    </thead>
+    <tbody class="second">
+     
+    </tbody>
+    </table>
+
+    </center>
+
+    <div id="order-info">
+        
+    </div>
+    <footer><center>app created by Mohammed El Hadi DIDI</center></footer>
+    <script defer src="./modal.js"></script>
+</body>
+
+
+
+</html>
