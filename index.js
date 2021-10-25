@@ -10,7 +10,7 @@ const dbURI=process.env.DB_URI
 mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology: true})
 .then(()=>{
     console.log('Mongo DB connected...')
-    app.listen(3001,()=>console.log('listening'))
+    app.listen(process.env.PORT ||3001,()=>console.log('listening'))
 }).then(()=>{
 
     mongoose.connection.db.collection('ids').countDocuments((err,count)=>{
